@@ -5,7 +5,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
-
+import squarify
 
 matplotlib.use('Agg')
 
