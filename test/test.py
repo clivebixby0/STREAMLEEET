@@ -184,19 +184,24 @@ st.write('''* The sales revenue graph showed that 2023-09 was the lowest and 202
 
 * 2023-09 to 2023-12 was the lowest multi-month period in terms of revenue compared to 2024-05 to 2024-08 which were the highest.''')
 
+#Treemap Chart
 st.markdown("## :gray[**Tree Map**] - Almandres, Villy Joel H.")
+def treemap_chart(df):
+    treemap_data = df.groupby('Product Type').size().reset_index(name='Count')
+    total_count = treemap_data['Count'].sum()
+    treemap_data['Percentage'] = (treemap_data['Count'] / total_count) * 100
+    treemap_data['Label'] = treemap_data['Product Type'] + '\n' + treemap_data['Percentage'].round(2).astype(str) + '%'
 
-treemap_data = df.groupby('Product Type').size().reset_index(name = 'Count')
-total_count = treemap_data['Count'].sum()
-treemap_data['Percentage'] = (treemap_data['Count'] / total_count) * 100
-treemap_data['Label'] = treemap_data['Product Type'] + '\n\n' + treemap_data['Percentage'].astype(str) + '%'
+    plt.figure(figsize=(10, 8))
+    squarify.plot(sizes=treemap_data['Count'], label=treemap_data['Label'], alpha=1, 
+                  color=["blue", "green", "cyan", "turquoise", "lightblue"])
+    plt.title('Product Types Treemap')
+    plt.axis('off')
+    st.pyplot(plt)
 
+    plt.clf()
 
-plt.figure(figsize = (10, 8))
-squarify.plot(sizes = treemap_data['Count'], label = treemap_data['Label'], alpha = 1, color =["blue", "green", "cyan", "turquoise", "lightblue"])
-plt.title('Product Types Treemap')
-plt.axis('off')
-plt.show()
+treemap_chart(df)
 
 st.write('''* Smartphones take the biggest cut when it comes to product types, making up almost 30% of the treemap, which might indicate a preference of consumers on smartphones compared to other categories.
 
