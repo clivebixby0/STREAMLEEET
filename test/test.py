@@ -187,6 +187,8 @@ st.write('''* The sales revenue graph showed that 2023-09 was the lowest and 202
 
 #Treemap Chart
 st.markdown("## :gray[**Tree Map**] - Almandres, Villy Joel H.")
+import squarify
+
 def treemap_chart(df):
     treemap_data = df.groupby('Product Type').size().reset_index(name='Count')
     total_count = treemap_data['Count'].sum()
