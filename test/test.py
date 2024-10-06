@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import squarify
 import os
 
 matplotlib.use('Agg')
@@ -148,7 +149,7 @@ def line_chart(df):
 
     st.pyplot(plt)
     plt.clf()
-    plt.show()
+    
 line_chart(df)
 
 st.write("* This code snippet handles a DataFrame df by first using `pd.to_datetime()` to convert the 'Purchase Date' column into a datetime format. The y_axis_column is then set to 'Quantity,' and the data is grouped by 'Purchase Date' with the groupby method being used to total the amounts for each date. Matplotlib is used to build a line graph that plots the grouped data's values (quantities) against its index (dates), with the line color set to red. A title, labeled axes, rotated x-axis labels for easier reading, and a grid for better presentation are added to the customized graph. Finally, `plt.show()` is used to display the graph.")
@@ -187,7 +188,6 @@ st.write('''* The sales revenue graph showed that 2023-09 was the lowest and 202
 
 #Treemap Chart
 st.markdown("## :gray[**Tree Map**] - Almandres, Villy Joel H.")
-
 def treemap_chart(df):
     treemap_data = df.groupby('Product Type').size().reset_index(name='Count')
     total_count = treemap_data['Count'].sum()
