@@ -133,23 +133,23 @@ st.write("* A function named `bar_chart` is defined in this code, and it accepts
 #Line Graph
 st.markdown("## :red[**Line Graph**] - Aguas, Ynikko Arzee Neo D.")
 def line_chart(df):
-df ['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
+    df ['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
 
-y_axis_column = 'Quantity'
+    y_axis_column = 'Quantity'
 
-grouped_data = df.groupby('Purchase Date')[y_axis_column].sum()  
+    grouped_data = df.groupby('Purchase Date')[y_axis_column].sum()  
 
-plt.plot(grouped_data.index, grouped_data.values, color='red')
+    plt.plot(grouped_data.index, grouped_data.values, color='red')
 
-plt.title(f'{y_axis_column} Over Time')
-plt.xlabel('Purchase Date')
-plt.ylabel(y_axis_column)
-plt.xticks(rotation=45)
-plt.grid(True) 
+    plt.title(f'{y_axis_column} Over Time')
+    plt.xlabel('Purchase Date')
+    plt.ylabel(y_axis_column)
+    plt.xticks(rotation=45)
+    plt.grid(True) 
 
-st.pyplot(plt)
-plt.clf()
-plt.show()
+    st.pyplot(plt)
+    plt.clf()
+    plt.show()
 line_chart(df)
 
 st.write("* This code snippet handles a DataFrame df by first using `pd.to_datetime()` to convert the 'Purchase Date' column into a datetime format. The y_axis_column is then set to 'Quantity,' and the data is grouped by 'Purchase Date' with the groupby method being used to total the amounts for each date. Matplotlib is used to build a line graph that plots the grouped data's values (quantities) against its index (dates), with the line color set to red. A title, labeled axes, rotated x-axis labels for easier reading, and a grid for better presentation are added to the customized graph. Finally, `plt.show()` is used to display the graph.")
