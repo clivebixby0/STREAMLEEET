@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import squarify
+import squarify as sq
 import os
 
 matplotlib.use('Agg')
@@ -133,23 +133,25 @@ st.write("* A function named `bar_chart` is defined in this code, and it accepts
 #Line Graph
 st.markdown("## :red[**Line Graph**] - Aguas, Ynikko Arzee Neo D.")
 def line_chart(df):
-    df ['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
+
+    df['Purchase Date'] = pd.to_datetime(df['Purchase Date'], errors='coerce')
 
     y_axis_column = 'Quantity'
 
-    grouped_data = df.groupby('Purchase Date')[y_axis_column].sum()  
+    grouped_data = df.groupby('Purchase Date')[y_axis_column].sum()
 
+    plt.figure(figsize=(10, 6))
     plt.plot(grouped_data.index, grouped_data.values, color='red')
 
     plt.title(f'{y_axis_column} Over Time')
     plt.xlabel('Purchase Date')
     plt.ylabel(y_axis_column)
     plt.xticks(rotation=45)
-    plt.grid(True) 
+    plt.grid(True)
 
     st.pyplot(plt)
     plt.clf()
-    
+
 line_chart(df)
 
 st.write("* This code snippet handles a DataFrame df by first using `pd.to_datetime()` to convert the 'Purchase Date' column into a datetime format. The y_axis_column is then set to 'Quantity,' and the data is grouped by 'Purchase Date' with the groupby method being used to total the amounts for each date. Matplotlib is used to build a line graph that plots the grouped data's values (quantities) against its index (dates), with the line color set to red. A title, labeled axes, rotated x-axis labels for easier reading, and a grid for better presentation are added to the customized graph. Finally, `plt.show()` is used to display the graph.")
@@ -195,7 +197,7 @@ def treemap_chart(df):
     treemap_data['Label'] = treemap_data['Product Type'] + '\n' + treemap_data['Percentage'].round(2).astype(str) + '%'
 
     plt.figure(figsize=(10, 8))
-    squarify.plot(sizes=treemap_data['Count'], label=treemap_data['Label'], alpha=1, 
+    sq.plot(sizes=treemap_data['Count'], label=treemap_data['Label'], alpha=1, 
                   color=["blue", "green", "cyan", "turquoise", "lightblue"])
     plt.title('Product Types Treemap')
     plt.axis('off')
