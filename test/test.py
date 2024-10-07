@@ -25,7 +25,7 @@ st.markdown("### Dataset :green[**(using df.isna().sum())**]:")
 st.write(df.isna().sum())
 
 # Violin Plot
-st.markdown('## :blue[**Violin Plot**] - Perico, Frederick Lemuel')
+st.markdown('## :blue[**Violin Plot**] - Perico, Frederick Lemuel A.')
 def violin_plot():
     plt.figure(figsize=(10, 6))
     sns.violinplot(x='Product Type', y='Total Price', data=df)
@@ -36,7 +36,7 @@ violin_plot()
 st.write("* The white in the middle represents the median total price of each product ranging from 2000 to 4000. Take into consideration that the unit price and the quantity of every product affects the total price of every order, the smartphone had the highest total price and the headphones likely had orders only within that range.")
 
 # Pie Chart
-st.markdown('## :blue[**Pie Chart**] - Perico, Frederick Lemuel')
+st.markdown('## :blue[**Pie Chart**] - Perico, Frederick Lemuel A.')
 def pie_chart():
     df['Payment Method1'] = df['Payment Method'].replace({'Paypal': 'PayPal'})
     payment_methods = df['Payment Method1'].value_counts()
